@@ -33,6 +33,7 @@ export class SigninComponent implements OnInit {
       this.isUserValid = true;
       alert('Login Successfull');
       this.router.navigateByUrl('famous-dishes');
+      
     }
     });
   }

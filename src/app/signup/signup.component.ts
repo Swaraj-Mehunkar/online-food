@@ -22,7 +22,7 @@ export class SignupComponent implements OnInit {
   registerForm = new FormGroup({
     firstname: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(10),
       Validators.pattern("[a-zA-Z].*")]),
-    lastname: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(10),
+    lastname: new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(10),
       Validators.pattern("[a-zA-Z].*")]),
     email: new FormControl("",[Validators.required, Validators.email]),
     mobile: new FormControl("",[Validators.required, Validators.minLength(10), 
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       // console.log(this.registerForm.valid);
       this.confirmPass = 'none'
 
-      // created array sends to register array
+      // created array sends to register parameter
       this.authService
       .registerUser([
         this.registerForm.value.firstname,
@@ -63,20 +63,6 @@ export class SignupComponent implements OnInit {
           alert('Register Successfull');
         }
         });
-      //   if(res == 'success'){
-      //     this.displayMsg = 'Account created Successfully!';
-      //     this.isAccountCreated = true;
-      //    }
-      //    else if(res == 'Already Exist'){
-      //     this.displayMsg = 'Account already exist. Try another email.';
-      //     this.isAccountCreated = false;
-      //    }
-      //    else{
-      //     this.displayMsg = 'Something Went Wrong';
-      //     this.isAccountCreated = false;
-      //     console.log(res);
-      //    }
-      // });
     
     }
     else{

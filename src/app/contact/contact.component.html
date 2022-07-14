@@ -6,16 +6,40 @@
         <p class="description">Feel free to contact us if you need any assistance, any help.
         </p>
         <div>
-          <input type="text" class="form-control rounded border-white mb-3 form-input" id="name" placeholder="Name" required>
+          <input type="text" class="form-control rounded border-white mb-3 form-input" id="name" placeholder="Name" required [formControl]="name">
+          <div class="form-text text-danger" *ngIf="name.errors?.['required'] && (name.touched || name.dirty)">
+            Name is Required.
+         </div>
+         <div class="form-text text-danger" *ngIf="name.errors?.['minlength'] || name.errors?.['maxlength']">
+          Name is too short.
+         </div>
+         <div class="form-text text-danger" *ngIf="name.errors?.['pattern'] && (name.dirty || name.touched)">
+          Name is should start with Alphabet.
+         </div>
         </div>
         <div>
-          <input  type="email" class="form-control rounded border-white mb-3 form-input" placeholder="Email" required>
+          <input  type="email" class="form-control rounded border-white mb-3 form-input" placeholder="Email" required [formControl]="email">
+          <div class="form-text text-danger" *ngIf="email.errors?.['required'] && (email.dirty || email.touched)">
+            Email is Required
+         </div>
+         <div class="form-text text-danger" *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">
+           Email is Invalid.
+        </div>
         </div>
         <div>
-          <textarea  id="message" class="form-control rounded border-white mb-3 form-text-area" rows="5" cols="30" placeholder="Message" required></textarea>
+          <textarea  id="message" class="form-control rounded border-white mb-3 form-text-area" rows="5" cols="30" placeholder="Message" required [formControl]="message"></textarea>
+          <div class="form-text text-danger" *ngIf="message.errors?.['required'] && (message.touched || message.dirty)">
+            Message is Required.
+         </div>
+         <div class="form-text text-danger" *ngIf="message.errors?.['minlength'] || message.errors?.['maxlength']">
+          Message is too short.
+         </div>
+         <div class="form-text text-danger" *ngIf="message.errors?.['pattern'] && (message.dirty || message.touched)">
+          Message is should start with Alphabet.
+         </div>
         </div>
         <div class="submit-button-wrapper">
-          <input type="submit" value="Send">
+          <input (click)="save()" type="submit" value="Send">
         </div>
       </form>
     </div>
